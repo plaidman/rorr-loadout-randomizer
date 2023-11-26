@@ -1,9 +1,9 @@
-use crossterm::event::{Event, KeyCode, KeyEventKind, KeyModifiers};
+use crossterm::event::{Event, KeyCode, KeyModifiers};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode, Clear, ClearType};
 use crossterm::{execute, style::Stylize};
 use rand::prelude::SliceRandom;
 use serde::Deserialize;
-use std::{fs::File, io::stdout};
+use std::{fs::File, io::stdout, time::SystemTime};
 
 #[derive(Deserialize)]
 struct Survivor {
@@ -44,7 +44,7 @@ fn main() -> std::io::Result<()> {
         println!("press any key for a new loadout");
         println!("press esc to exit");
 
-        if read_input().unwrap() {
+        if read_input(SystemTime::now()).unwrap() {
             break;
         }
     }
@@ -52,22 +52,22 @@ fn main() -> std::io::Result<()> {
     return Ok(());
 }
 
-fn read_input() -> std::io::Result<bool> {
+fn read_input(now: SystemTime) -> std::io::Result<bool> {
     enable_raw_mode()?;
 
     let exit = loop {
         match crossterm::event::read().unwrap() {
             Event::Key(event) => {
-                if event.kind != KeyEventKind::Press {
-                    continue;
-                }
-
                 if [KeyCode::Esc, KeyCode::Char('q')].contains(&event.code) {
                     break true;
                 }
 
                 if event.code == KeyCode::Char('c') && event.modifiers == KeyModifiers::CONTROL {
                     break true;
+                }
+
+                if now.elapsed().unwrap().as_millis() < 500 {
+                    continue;
                 }
 
                 break false;
