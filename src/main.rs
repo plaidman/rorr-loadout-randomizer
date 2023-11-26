@@ -1,4 +1,4 @@
-use crossterm::event::{Event, KeyCode, KeyModifiers};
+use crossterm::event::{Event, KeyCode, KeyEventKind, KeyModifiers};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode, Clear, ClearType};
 use crossterm::{execute, style::Stylize};
 use rand::prelude::SliceRandom;
@@ -41,25 +41,44 @@ fn main() -> std::io::Result<()> {
         println!("  {}    {}", "special:".blue(), special.to_string().red());
         println!("{}", "-------".dark_grey());
         println!();
-        println!("{}", "press any key for a new loadout");
-        println!("{}", "press esc to exit");
+        println!("press any key for a new loadout");
+        println!("press esc to exit");
 
-        enable_raw_mode()?;
+        if read_input().unwrap() {
+            break;
+        }
+    }
+
+    return Ok(());
+}
+
+fn read_input() -> std::io::Result<bool> {
+    enable_raw_mode()?;
+
+    let exit = loop {
         match crossterm::event::read().unwrap() {
             Event::Key(event) => {
+                if event.kind != KeyEventKind::Press {
+                    continue;
+                }
+
                 if [KeyCode::Esc, KeyCode::Char('q')].contains(&event.code) {
-                    break;
+                    break true;
                 }
 
                 if event.code == KeyCode::Char('c') && event.modifiers == KeyModifiers::CONTROL {
-                    break;
+                    break true;
                 }
-            }
-            _ => {}
-        }
-        disable_raw_mode()?;
-    }
-    disable_raw_mode()?;
 
-    return Ok(());
+                break false;
+            }
+
+            _ => {
+                continue;
+            }
+        }
+    };
+
+    disable_raw_mode()?;
+    return Ok(exit);
 }
