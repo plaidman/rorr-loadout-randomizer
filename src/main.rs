@@ -17,8 +17,8 @@ struct Survivor {
 fn main() -> std::io::Result<()> {
     let mut rng = rand::thread_rng();
 
-    let file = File::open("survivors.yml").unwrap();
-    let list: Vec<Survivor> = serde_yaml::from_reader(file).unwrap();
+    let file = File::open("survivors.yml").expect("could not find survivors.yml");
+    let list: Vec<Survivor> = serde_yaml::from_reader(file).expect("unable to parse yaml file");
 
     loop {
         let survivor = list.choose(&mut rng).unwrap();
