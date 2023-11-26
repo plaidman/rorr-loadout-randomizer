@@ -1,4 +1,5 @@
 - name: Commando
+  enabled: true
   primary:
     - main (Double Tap)
   secondary:
@@ -12,6 +13,7 @@
     - alt (Point-Blank)
 
 - name: Huntress
+  enabled: true
   primary:
     - main (Strafe)
     - alt (Pierce)
@@ -25,6 +27,7 @@
     - main (Cluster Bomb)
     
 - name: Enforcer
+  enabled: true
   primary:
     - main (Riot Shotgun)
     - alt (Shrapnel Grenade)
@@ -38,6 +41,7 @@
     - alt (Disperse)
     
 - name: Bandit
+  enabled: true
   primary:
     - main (Blast)
     - alt (Whip)
@@ -51,6 +55,7 @@
     - alt (Standoff)
     
 - name: HAN-D
+  enabled: true
   primary:
     - main (HURT)
   secondary:
@@ -64,6 +69,7 @@
     - alt (DISASSEMBLE)
     
 - name: Engineer
+  enabled: true
   primary:
     - main (Tri-nade)
     - alt (Mortar Barrage)
@@ -77,6 +83,7 @@
     - alt (V.0.2 Prototype Laser Turret)
     
 - name: Miner
+  enabled: true
   primary:
     - main (Crush)
     - alt (Throwing Axe)
@@ -90,6 +97,7 @@
     - main (To the Stars)
     
 - name: Sniper
+  enabled: true
   primary:
     - main (Snipe)
     - alt (Improvise)
@@ -103,6 +111,7 @@
     - "main (Spotter: SCAN)"
     
 - name: Acrid
+  enabled: true
   primary:
     - main (Festering Wounds)
     - alt (Corrosive Wounds)
@@ -116,6 +125,7 @@
     - main (Epidemic)
     
 - name: Mercenary
+  enabled: true
   primary:
     - main (Laser Sword)
   secondary:
@@ -129,6 +139,7 @@
     - alt (After-Image)
     
 - name: Loader
+  enabled: true
   primary:
     - main (Knuckleboom)
     - alt (Bullet Punch)
@@ -142,6 +153,7 @@
     - alt (S260 Conduit)
     
 - name: CHEF
+  enabled: true
   primary:
     - main (DICE)
     - alt (SLICE)
@@ -155,6 +167,7 @@
     - alt (COOK)
     
 - name: Pilot
+  enabled: true
   primary:
     - main (Clusterfire)
     - alt (Rapid Fire)
@@ -168,6 +181,7 @@
     - alt (Aerial Support)
     
 - name: Artificer
+  enabled: true
   primary:
     - main (Flame Chakrams)
   secondary:
@@ -181,6 +195,7 @@
     - alt (Localized Sun)
     
 - name: Drifter
+  enabled: true
   primary:
     - main (Blunt Force)
   secondary:
@@ -194,6 +209,7 @@
     - alt (Recycle)
     
 - name: hidden
+  enabled: false
   primary:
     - main
   secondary:

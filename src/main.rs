@@ -8,6 +8,7 @@ use std::{fs::File, io::stdout, time::SystemTime};
 #[derive(Deserialize)]
 struct Survivor {
     name: String,
+    enabled: bool,
     primary: Vec<String>,
     secondary: Vec<String>,
     utility: Vec<String>,
@@ -21,7 +22,13 @@ fn main() -> std::io::Result<()> {
     let list: Vec<Survivor> = serde_yaml::from_reader(file).expect("unable to parse yaml file");
 
     loop {
-        let survivor = list.choose(&mut rng).unwrap();
+        let survivor = loop {
+            let chosen = list.choose(&mut rng).unwrap();
+            if chosen.enabled {
+                break chosen;
+            }
+        };
+
         let primary = survivor.primary.choose(&mut rng).unwrap();
         let secondary = survivor.secondary.choose(&mut rng).unwrap();
         let utility = survivor.utility.choose(&mut rng).unwrap();
