@@ -1,4 +1,4 @@
-use crossterm::event::{Event, KeyCode, KeyModifiers};
+use crossterm::event::{Event, KeyCode, KeyModifiers, KeyEventKind};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode, Clear, ClearType};
 use crossterm::{cursor::MoveToPreviousLine, execute, style::Stylize};
 use rand::prelude::SliceRandom;
@@ -75,6 +75,10 @@ fn read_input(now: SystemTime) -> std::io::Result<bool> {
 
         match event {
             Event::Key(key) => {
+                if key.kind != KeyEventKind::Press {
+                    continue;
+                }
+
                 if [KeyCode::Esc, KeyCode::Char('q')].contains(&key.code) {
                     break true;
                 }
