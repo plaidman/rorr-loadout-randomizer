@@ -1,0 +1,204 @@
+- name: Commando
+  primary:
+    - main (Double Tap)
+  secondary:
+    - main (Full Metal Jacket)
+    - alt (Combat Knife)
+  utility:
+    - main (Tactical Dive)
+    - alt (Tactical Slide)
+  special:
+    - main (Suppressive Fire)
+    - alt (Point-Blank)
+
+- name: Huntress
+  primary:
+    - main (Strafe)
+    - alt (Pierce)
+  secondary:
+    - main (Laser Glaive)
+    - alt (Laser Cyclone)
+  utility:
+    - main (Blink)
+    - alt (Warp Dart)
+  special:
+    - main (Cluster Bomb)
+    
+- name: Enforcer
+  primary:
+    - main (Riot Shotgun)
+    - alt (Shrapnel Grenade)
+  secondary:
+    - main (Shield Slam)
+    - alt (Shield Tackle)
+  utility:
+    - main (Protect and Serve)
+  special:
+    - main (Crowd Control)
+    - alt (Disperse)
+    
+- name: Bandit
+  primary:
+    - main (Blast)
+    - alt (Whip)
+  secondary:
+    - main (Dynamite Toss)
+  utility:
+    - main (Smokebomb)
+    - alt (Flashbang)
+  special:
+    - main (Lights Out)
+    - alt (Standoff)
+    
+- name: HAN-D
+  primary:
+    - main (HURT)
+  secondary:
+    - main (DRONE - HEAL)
+    - alt 1 (DRONE - SPEED)
+    - alt 2 (DRONE - BLAST)
+  utility:
+    - main (OVERCLOCK)
+  special:
+    - main (FORCED_REASSEMBLY)
+    - alt (DISASSEMBLE)
+    
+- name: Engineer
+  primary:
+    - main (Tri-nade)
+    - alt (Mortar Barrage)
+  secondary:
+    - main (Bounding Mine)
+    - alt (Shockwave Mine)
+  utility:
+    - main (Thermal Harpoons)
+  special:
+    - main (Auto Turret)
+    - alt (V.0.2 Prototype Laser Turret)
+    
+- name: Miner
+  primary:
+    - main (Crush)
+    - alt (Throwing Axe)
+  secondary:
+    - main (Drill Charge)
+    - alt (Drill Dash)
+  utility:
+    - main (Backblast)
+    - alt (Burnout)
+  special:
+    - main (To the Stars)
+    
+- name: Sniper
+  primary:
+    - main (Snipe)
+    - alt (Improvise)
+  secondary:
+    - main (Steady Aim)
+    - alt (Quickscope)
+  utility:
+    - main (Military Training)
+    - alt (Heavy Recoil)
+  special:
+    - "main (Spotter: SCAN)"
+    
+- name: Acrid
+  primary:
+    - main (Festering Wounds)
+    - alt (Corrosive Wounds)
+  secondary:
+    - main (Neurotoxin)
+    - alt (Toxic Bubble)
+  utility:
+    - main (Caustic Sludge)
+    - alt (Dissolving Ambush)
+  special:
+    - main (Epidemic)
+    
+- name: Mercenary
+  primary:
+    - main (Laser Sword)
+  secondary:
+    - main (Whirlwind)
+    - alt (Focused Strike)
+  utility:
+    - main (Blinding Assault)
+    - alt (Skyward Assault)
+  special:
+    - main (Eviscerate)
+    - alt (After-Image)
+    
+- name: Loader
+  primary:
+    - main (Knuckleboom)
+    - alt (Bullet Punch)
+  secondary:
+    - main (Debris Shield)
+    - alt (Short Circuit)
+  utility:
+    - main (Hydraulic Gauntlet)
+  special:
+    - main (M440 Conduit)
+    - alt (S260 Conduit)
+    
+- name: CHEF
+  primary:
+    - main (DICE)
+    - alt (SLICE)
+  secondary:
+    - main (SEAR)
+  utility:
+    - main (GLAZE)
+    - alt (OIL JAR)
+  special:
+    - main (SECOND HELPING)
+    - alt (COOK)
+    
+- name: Pilot
+  primary:
+    - main (Clusterfire)
+    - alt (Rapid Fire)
+  secondary:
+    - main (Target Acquired!)
+  utility:
+    - main (Rapid Deployment)
+    - alt (Aerobatics)
+  special:
+    - main (Airstrike)
+    - alt (Aerial Support)
+    
+- name: Artificer
+  primary:
+    - main (Flame Chakrams)
+  secondary:
+    - main (Charged Nanobomb)
+    - alt (Pulse Spear)
+  utility:
+    - main (Frost Barrier)
+    - alt (Tectonic Surge)
+  special:
+    - main (Flamethrower)
+    - alt (Localized Sun)
+    
+- name: Drifter
+  primary:
+    - main (Blunt Force)
+  secondary:
+    - main (Cleanup)
+    - alt (Scrap Cube)
+  utility:
+    - main (Suffocate)
+    - alt (Tornado Slam)
+  special:
+    - main (Salvage)
+    - alt (Recycle)
+    
+- name: hidden
+  primary:
+    - main
+  secondary:
+    - main
+  utility:
+    - main
+  special:
+    - main
