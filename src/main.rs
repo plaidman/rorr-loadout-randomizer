@@ -1,9 +1,10 @@
 use crossterm::event::{Event, KeyCode, KeyModifiers};
 use crossterm::terminal::{disable_raw_mode, enable_raw_mode, Clear, ClearType};
-use crossterm::{execute, style::Stylize};
+use crossterm::{cursor::MoveToPreviousLine, execute, style::Stylize};
 use rand::prelude::SliceRandom;
 use serde::Deserialize;
-use std::{fs::File, io::stdout, time::SystemTime};
+use std::io::{stdout, Write};
+use std::{fs::File, time::SystemTime};
 
 #[derive(Deserialize)]
 struct Survivor {
@@ -21,6 +22,8 @@ fn main() -> std::io::Result<()> {
     let file = File::open("survivors.yml").expect("could not find survivors.yml");
     let list: Vec<Survivor> = serde_yaml::from_reader(file).expect("unable to parse yaml file");
 
+    execute!(stdout(), Clear(ClearType::All))?;
+
     loop {
         let survivor = loop {
             let chosen = list.choose(&mut rng).unwrap();
@@ -34,8 +37,7 @@ fn main() -> std::io::Result<()> {
         let utility = survivor.utility.choose(&mut rng).unwrap();
         let special = survivor.special.choose(&mut rng).unwrap();
 
-        execute!(stdout(), Clear(ClearType::All))?;
-
+        println!();
         println!(
             "{}     {}",
             "Survivor:".blue(),
@@ -46,34 +48,44 @@ fn main() -> std::io::Result<()> {
         println!("  {}  {}", "secondary:".blue(), secondary.to_string().red());
         println!("  {}    {}", "utility:".blue(), utility.to_string().red());
         println!("  {}    {}", "special:".blue(), special.to_string().red());
-        println!("{}", "-------".dark_grey());
         println!();
+        println!("{}", "-------".dark_grey());
         println!("press any key for a new loadout");
         println!("press esc to exit");
 
         if read_input(SystemTime::now()).unwrap() {
             break;
         }
+
+        execute!(
+            stdout(),
+            MoveToPreviousLine(3),
+            Clear(ClearType::FromCursorDown),
+        )?;
     }
 
     return Ok(());
 }
 
 fn read_input(now: SystemTime) -> std::io::Result<bool> {
-    enable_raw_mode()?;
-
     let exit = loop {
-        match crossterm::event::read().unwrap() {
-            Event::Key(event) => {
-                if [KeyCode::Esc, KeyCode::Char('q')].contains(&event.code) {
+        enable_raw_mode()?;
+        let event = crossterm::event::read().unwrap();
+        disable_raw_mode()?;
+
+        match event {
+            Event::Key(key) => {
+                if [KeyCode::Esc, KeyCode::Char('q')].contains(&key.code) {
                     break true;
                 }
 
-                if event.code == KeyCode::Char('c') && event.modifiers == KeyModifiers::CONTROL {
+                if key.code == KeyCode::Char('c') && key.modifiers == KeyModifiers::CONTROL {
                     break true;
                 }
 
                 if now.elapsed().unwrap().as_millis() < 500 {
+                    print!(".");
+                    stdout().flush()?;
                     continue;
                 }
 
@@ -86,6 +98,5 @@ fn read_input(now: SystemTime) -> std::io::Result<bool> {
         }
     };
 
-    disable_raw_mode()?;
     return Ok(exit);
 }
